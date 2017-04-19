@@ -1,0 +1,8 @@
+<resources>
+  <color name="turq">#1abc9c</color>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/turq</item>
+    </style>
+
+</resources>
