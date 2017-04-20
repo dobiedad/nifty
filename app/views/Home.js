@@ -5,10 +5,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Spinner from 'react-native-spinkit';
 import styles from '../styles/main'
 import colors from '../styles/colors'
-import yelp from '../services/Yelp';
+import Yelp from '../services/Yelp';
 import MapUrl from '../services/MapUrl';
 import Settings from './Settings'
 import StatusBarAlert from 'react-native-statusbar-alert'
+
+const yelpService = new Yelp()
 
 import {
   StyleSheet,
@@ -48,8 +50,11 @@ class Home extends Component {
 
   loadData() {
     this.setState({loading:true})
-    return this.fetchData.call(this)
-    .catch(() => {this.setState({loading:false})})
+    return this.getLocation.call(this)
+      .then((location) => yelpService.fetchData.call(this))
+      .then((businesses) => {this.setState({results: businesses})})
+      .then(() => this.loadRandomRestaurant.call(this))
+      .catch(err => { this.setState({error: true,bannerOptions:{title:"Oops, something went wrong",color:colors.red}}) ; console.log(err)})
   }
 
   renderMain() {
@@ -65,7 +70,7 @@ class Home extends Component {
         </View>
         <View style={{flex:1}}>
             <ScrollView style={styles.scrollView}>
-            <Image style={styles.image} source={this.state.currentBusiness.image_url ? { uri:  this.state.currentBusiness.image_url } : require('../../Resources/placeholder.png')} style={styles.image} />
+            <Image style={styles.image} source={this.state.currentBusiness.image ? { uri:  this.state.currentBusiness.image } : require('../../Resources/placeholder.png')} style={styles.image} />
             { this.state.currentBusiness.name ?
                 <View>
                 {this.renderRatingsContainer.call(this)}
@@ -120,7 +125,7 @@ class Home extends Component {
         <View style={styles.ratings}>
           <View style={styles.detailsRow,{width:10 * Math.ceil(this.state.currentBusiness.rating) }}>
             <Text style={styles.distance}>
-            {Math.round(this.state.currentBusiness.distance / 1000)} km
+            {this.state.currentBusiness.distance} km
             </Text>
           </View>
         </View>
@@ -132,8 +137,8 @@ class Home extends Component {
           </View>
         </View>
         <View style={styles.priceRating}>
-          <View style={styles.detailsRow,{width:10 * this.state.currentBusiness.price.length}}>
-            {this.getMultipleIcons(this.state.currentBusiness.price.length,'dollar','sky',10)}
+          <View style={styles.detailsRow,{width:10 * this.state.currentBusiness.price}}>
+            {this.getMultipleIcons(this.state.currentBusiness.price,'dollar','sky',10)}
           </View>
         </View>
       </View>
@@ -192,17 +197,17 @@ class Home extends Component {
 
   loadRandomRestaurant() {
     this.setState({loading:true})
-    if(this.state.results.length ==0){
-      if(!this.state.error){
-        this.setState({bannerOptions:{title:"No Results :( try changing your settings",color:colors.turq}})
-      }
-      return
-    }
+    if(this.state.results.length ==0){if(!this.state.error){this.setState({bannerOptions:{title:"No Results :( try changing your settings",color:colors.turq}})}return}
+
     delete(this.state.currentBusiness)
+
     let last = this.state.results.shift()
     this.state.results.push(last)
+
+    console.log(this.state.results[0].image);
+
     this.setState({currentBusiness:this.state.results[0],noResults:false,error:false})
-    return yelp.reviews(this.state.results[0].id)
+    return yelpService.reviews(this.state.results[0].id)
       .then(res => {
         this.state.currentBusiness.reviews = res.reviews
         this.state.results[0].reviews = res.reviews
@@ -212,31 +217,15 @@ class Home extends Component {
       .catch(err => {this.setState({loading:false}) ;console.log(err)})
   }
 
-  fetchData() {
-    return this.getLocation.apply(this)
-      .then((res) => {
-        const sorts = ['review_count','best_match','distance']
-        const sortBy = parseInt(Math.random()*(sorts.length));
-        const params = {
-          term: this.state.term.length > 0 ? this.state.term.toLowerCase().trim() : 'lunch',
-          price: (Math.floor(Math.random() * 2) + 3).toString(),
-          limit: 50,
-          radius:Math.floor(this.state.distance * 10000),
-          sort_by:sorts[sortBy],
-          location:res
-        }
-        return yelp.search(params)
-          .then(data => { this.setState({results: data.businesses})})
-          .then(() => this.loadRandomRestaurant.call(this))
-      })
-      .catch(err => { this.setState({error: true,bannerOptions:{title:"Oops, something went wrong",color:colors.red}}) ; console.log(err)})
-  }
-
   getLocation() {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, undefined);
     })
-    .then(location => location.coords.latitude + ',' + location.coords.longitude)
+    .then(location => {
+        let loc = location.coords.latitude + ',' + location.coords.longitude;
+        this.setState({location:loc})
+        return loc
+    })
     .catch(error => error.message)
   }
 }
