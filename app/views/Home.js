@@ -70,18 +70,15 @@ class Home extends Component {
         </View>
         <View style={{flex:1}}>
             <ScrollView style={styles.scrollView}>
-            <Image style={styles.image} source={this.state.currentBusiness.image ? { uri:  this.state.currentBusiness.image } : require('../../Resources/placeholder.png')} style={styles.image} />
             { this.state.currentBusiness.name ?
                 <View>
+                <Image style={styles.image} source={this.state.currentBusiness.image ? { uri:  this.state.currentBusiness.image } : require('../../Resources/no-image.jpg')} style={styles.image} />
                 {this.renderRatingsContainer.call(this)}
                   <View style={styles.linkContainer}>
                     <TouchableHighlight underlayColor={colors.darkTurq} style={styles.tel} onPress={() => Communications.phonecall("+442077220011", true)}><View style={styles.linkContainer}>{this.getMultipleIcons(1,'phone','white',20)}</View></TouchableHighlight>
                     <TouchableHighlight underlayColor={colors.darkSky} style={styles.directions} onPress={() => {
-                      let url = new MapUrl({lat:this.state.currentBusiness.coordinates.latitude,lon:this.state.currentBusiness.coordinates.longitude}).android()
-
-                      if(this.state.os =='ios'){
-                        url = new MapUrl({lat:this.state.currentBusiness.coordinates.latitude,lon:this.state.currentBusiness.coordinates.longitude}).apple()
-                      }
+                      let url = new MapUrl(this.state.currentBusiness.mapObject).android()
+                      if(this.state.os =='ios'){url = new MapUrl(this.state.currentBusiness.mapObject).apple()}
                       return Linking.openURL(url)
                     }} >
                       {this.getMultipleIcons(1,'map-marker','white',20)}

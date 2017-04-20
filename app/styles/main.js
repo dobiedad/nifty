@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     fontFamily:'FibonSans-Regular'
   },
   image: {
-    flex:1,
     height: 300,
+    width: null,
     resizeMode: 'cover',
     flexDirection: 'row',
     justifyContent: 'center'
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     width:25,
     height:25,
     left:7,
-    top:3,
+    top:-5,
     position:'absolute'
   },
   rightQuote: {

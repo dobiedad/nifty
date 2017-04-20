@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork.png" translatesAutoresizingMaskIntoConstraints="NO" id="HYg-uM-zAP">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="HYg-uM-zAP">
                     <rect key="frame" x="80" y="80" width="320" height="320"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="320" id="p25-t4-R3x"/>
@@ -34,6 +34,6 @@
         </view>
     </objects>
     <resources>
-        <image name="iTunesArtwork.png" width="512" height="512"/>
+        <image name="logo.png" width="512" height="512"/>
     </resources>
 </document>

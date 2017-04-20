@@ -68,6 +68,8 @@
 		B34990771EA6DBA2003F3A6B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B34990631EA6DBA2003F3A6B /* Icon@2x.png */; };
 		B34990781EA6DBA2003F3A6B /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = B34990641EA6DBA2003F3A6B /* iTunesArtwork.png */; };
 		B34990791EA6DBA2003F3A6B /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B34990651EA6DBA2003F3A6B /* iTunesArtwork@2x.png */; };
+		B35FD64E1EA8BEA800D3D499 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B35FD64C1EA8BEA800D3D499 /* logo.png */; };
+		B35FD64F1EA8BEA800D3D499 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B35FD64D1EA8BEA800D3D499 /* logo@2x.png */; };
 		B3A3524A1EA44B41007F6297 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3A352491EA44B41007F6297 /* FontAwesome.ttf */; };
 		B3EB26711EA5A20B00D58E6C /* FibonSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B3EB266C1EA5A20B00D58E6C /* FibonSans-Bold.otf */; };
 		B3EB26721EA5A20B00D58E6C /* FibonSans-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B3EB266D1EA5A20B00D58E6C /* FibonSans-ExtraBold.otf */; };
@@ -344,6 +346,8 @@
 		B34990631EA6DBA2003F3A6B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		B34990641EA6DBA2003F3A6B /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		B34990651EA6DBA2003F3A6B /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		B35FD64C1EA8BEA800D3D499 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		B35FD64D1EA8BEA800D3D499 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		B38B064C1EA6C4880074FF9E /* libReactNativeIcons.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libReactNativeIcons.a; path = "../node_modules/react-native-icons/ios/build/Debug-iphoneos/libReactNativeIcons.a"; sourceTree = "<group>"; };
 		B3A3523D1EA4498B007F6297 /* octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = octicons.ttf; sourceTree = "<group>"; };
 		B3A3523E1EA4498B007F6297 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
@@ -501,6 +505,8 @@
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				B35FD64C1EA8BEA800D3D499 /* logo.png */,
+				B35FD64D1EA8BEA800D3D499 /* logo@2x.png */,
 				B34990511EA6DBA2003F3A6B /* app-icons */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -1106,7 +1112,9 @@
 				B349906F1EA6DBA2003F3A6B /* Icon-76@2x.png in Resources */,
 				B34990781EA6DBA2003F3A6B /* iTunesArtwork.png in Resources */,
 				3EA9E8CECDF046B89F734554 /* MaterialCommunityIcons.ttf in Resources */,
+				B35FD64F1EA8BEA800D3D499 /* logo@2x.png in Resources */,
 				B34990741EA6DBA2003F3A6B /* Icon-Small@2x.png in Resources */,
+				B35FD64E1EA8BEA800D3D499 /* logo.png in Resources */,
 				60A1A00047EE4BB79987ECE4 /* MaterialIcons.ttf in Resources */,
 				B3EB26731EA5A20B00D58E6C /* FibonSans-ExtraLight.otf in Resources */,
 				766DC28C630A4A72AC0848C8 /* Octicons.ttf in Resources */,
